@@ -1,3 +1,3 @@
 export { ImgDropZone } from "./DropZone";
-import { ProductUpdateTable } from "./ProductUpdateTable";
+export { ProductUpdateTable } from "./ProductUpdateTable";
 export * from "./providers";

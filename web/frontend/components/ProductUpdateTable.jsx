@@ -1,30 +1,71 @@
-import {
-  IndexTable,
-  Card,
-  useIndexResourceState,
-  IndexTableRow,
-} from "@shopify/polaris";
+import { IndexTable, Card, useIndexResourceState } from "@shopify/polaris";
 import React from "react";
+import { ImgDropZone } from "./DropZone";
 
 export function ProductUpdateTable() {
   const customers = [
     {
-      id: "3411",
-      url: "customers/341",
-      name: "Mae Jemison",
-      location: "Decatur, USA",
-      orders: 20,
-      amountSpent: "$2,400",
+      handle: "3411",
+      title: "Dom Perignon",
+      body: "Mae Jemison",
+      category: "wine",
+      published: "FALSE",
+      vendor: "Decatur, USA",
+      qty: "12",
+      price: "$2,400",
     },
     {
-      id: "2561",
-      url: "customers/256",
-      name: "Ellen Ochoa",
-      location: "Los Angeles, USA",
-      orders: 30,
-      amountSpent: "$140",
+      handle: "1623",
+      title: "Chateau Petrus",
+      body: "Brian Davies",
+      category: "wine",
+      published: "FALSE",
+      vendor: "Decatur, USA",
+      qty: "12",
+      price: "$200",
+    },
+    {
+      handle: "1623",
+      title: "Baby Duck",
+      body: "Brian Davies",
+      category: "wine",
+      published: "FALSE",
+      vendor: "Decatur, USA",
+      qty: "12",
+      price: "$200",
+    },
+    {
+      handle: "1623",
+      title: "Babe Rose",
+      body: "Brian Davies",
+      category: "wine",
+      published: "FALSE",
+      vendor: "Decatur, USA",
+      qty: "12",
+      price: "$200",
+    },
+    {
+      handle: "1623",
+      title: "Whispering Angel",
+      body: "Brian Davies",
+      category: "wine",
+      published: "FALSE",
+      vendor: "Decatur, USA",
+      qty: "12",
+      price: "$200",
+    },
+    {
+      handle: "1623",
+      title: "Kim Crawford",
+      body: "Brian Davies",
+      category: "wine",
+      published: "FALSE",
+      vendor: "Decatur, USA",
+      qty: "12",
+      price: "$200",
     },
   ];
+
   const resourceName = {
     singular: "customer",
     plural: "customers",
@@ -34,18 +75,28 @@ export function ProductUpdateTable() {
     useIndexResourceState(customers);
 
   const rowMarkup = customers.map(
-    ({ id, name, location, orders, amountSpent }, index) => (
-      <IndexTableRow
-        id={id}
-        key={id}
-        selected={selectedResources.includes(id)}
+    (
+      { handle, title, body, category, published, vendor, qty, price },
+      index
+    ) => (
+      <IndexTable.Row
+        id={handle}
+        key={index}
+        selected={selectedResources.includes(handle)}
         position={index}
       >
-        <IndexTable.Cell>{name}</IndexTable.Cell>
-        <IndexTable.Cell>{location}</IndexTable.Cell>
-        <IndexTable.Cell>{orders}</IndexTable.Cell>
-        <IndexTable.Cell>{amountSpent}</IndexTable.Cell>
-      </IndexTableRow>
+        <IndexTable.Cell>{title}</IndexTable.Cell>
+        <IndexTable.Cell>
+          <ImgDropZone />
+        </IndexTable.Cell>
+        <IndexTable.Cell>{handle}</IndexTable.Cell>
+        <IndexTable.Cell>{body}</IndexTable.Cell>
+        <IndexTable.Cell>{category}</IndexTable.Cell>
+        <IndexTable.Cell>{published}</IndexTable.Cell>
+        <IndexTable.Cell>{vendor}</IndexTable.Cell>
+        <IndexTable.Cell>{qty}</IndexTable.Cell>
+        <IndexTable.Cell>{price}</IndexTable.Cell>
+      </IndexTable.Row>
     )
   );
 
@@ -59,10 +110,15 @@ export function ProductUpdateTable() {
         }
         onSelectionChange={handleSelectionChange}
         headings={[
-          { title: "Name" },
-          { title: "Location" },
-          { title: "Order count" },
-          { title: "Amount spent" },
+          { title: "Title" },
+          { title: "Images" },
+          { title: "Handle" },
+          { title: "Body" },
+          { title: "Category" },
+          { title: "Published" },
+          { title: "Vendor" },
+          { title: "#" },
+          { title: "Price" },
         ]}
       >
         {rowMarkup}
