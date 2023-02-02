@@ -1,4 +1,4 @@
-import { Page, Layout } from "@shopify/polaris";
+import { Page, Layout, Button } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
 import { ProductUpdateTable } from "../components";
 
@@ -9,6 +9,14 @@ export default function HomePage() {
       <Layout>
         <Layout.Section>
           <ProductUpdateTable />
+          <Button
+            style="--p-interactive-pressed"
+            submit={true}
+            size="large"
+            id="update-submit-btn"
+          >
+            Update Products
+          </Button>
         </Layout.Section>
       </Layout>
     </Page>
