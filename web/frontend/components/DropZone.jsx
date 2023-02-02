@@ -14,6 +14,7 @@ export function ImgDropZone() {
   const validImageTypes = ["image/gif", "image/jpeg", "image/png"];
 
   const fileUpload = !files.length && <DropZone.FileUpload />;
+
   const uploadedFiles = files.length > 0 && (
     <div style={{ padding: "0" }}>
       <Stack vertical>
